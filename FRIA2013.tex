@@ -18,6 +18,7 @@
 
 
 \section{Research objectives}
+(* Should be rewritten *)
 The main objective of the current proposal is to investigate how constraint solving capability can be added to an object-oriented language while diminishing the need to write custom solvers or propagators. In particular we aim to investigate the following:
 \begin{enumerate}
 \item To what extent can the basic concepts underlying the object-oriented programming paradigm (classes, objects, methods) be used to express constraints over a class' possible instantiations.
@@ -58,7 +59,8 @@ From a programmer's perspective, the approach allows one to use the object-orien
 
 In order to compute an instantiation that satisfies the constraints, one needs to create an object with values for its data fields that are such that an invocation of the boolean methods representing the constraints all return true. Deriving data values that make a method execute along a desired path can be done by using well-known techniques from test-case generation. Although different approaches towards test input generation exist, so-called constraint-based test-case generation techniques translate a desired execution path into a set of basic constraints that allow in turn to compute values that make the method execute along the specified path.  
 
-The main research questions that will be addressed in this project are the following:
+
+The main focus of this project is thus not on developing new constraint-solving techniques or solvers, but rather on investigating how high-level constraints on a class definition, expressed by a set of boolean methods, can be translated into more basic constraints that can subsequently be solved by (a combination of) traditional solvers. The main research questions that will be addressed in this project are the following:
 
 Firstly, to what extent can techniques from test-case generation be extended and adapted in order to compute class instantiations that verify the set of given constraints. Although seemingly rather straightforward in theory, it remains to be seen whether limits need to be imposed on the language constructs that can be used in the constraints in order to make value generation feasible in practice. Moreover, while test-case generation is typically concerned with a single method at a time, for object instantiation multiple boolean methods need to return true at the same time. It is also to be expected that the techniques need to deal with argument values provided from the object's constructor.
 
@@ -69,13 +71,15 @@ Thirdly, in a typical setting multiple (different) instantiations need to be com
 Fourthly, being part of a running system, the objects generated from a constrained class could be altered during their lifetime. Strategies need to devised that allow to deal with these changes. In particular, it will be interesting to investigate whether it is feasible to propagate these changes through the class' constraints in order to further alter the object in such a way that the constraints are again satisfied.
 
 
-
-
-
-
-
 \section{Plan}
 
+In a first stage, we plan to undertake a thorough study of the existing literature concerning the integration of constraints in object-oriented programming languages. We mention \cite{} and \cite{} as suitable starting points. In a parallel effort, we will investigate the state of the art concerning test-case generation, in particular the work on generating instances of complex data structures. We plan to build further on the in-house experience present at the University of Namur with respect to this topic~\cite{}.
+
+In a second stage, we start working on the first research question cited in this proposal. While the idea is to pursue the different research questions in order, it is to be expected that the initial results regarding research question 1 will steer and prioritize the directions our research will take.
+
+As concrete outcomes of the proposed research, we expect to publish our results in peer-reviewed proceedings. In particular, we envisage a first (workshop) publication by the end of the first year, in which the general framework we intend to develop will be described. We expect that the further technical development of this framework and its instantiation will provide the occasion for several conference publications during the 4-year timespan of this project. We intend to apply our ideas in practice by re-engineering an existing mid-sized real-world application. This will allow us to evaluate the feasibility, effectiveness and efficiency of our approach, and will provide us with feedback that will in turn allow us to refine and augment the framework. In addition to being a testbed for our research, we envisage to report on our application in an implementation-driven workshop or conference.
+
+(* Perhaps say that we will re-engineer the application in parallel with our ideas *)
 
 
 \bibliographystyle{plain}
