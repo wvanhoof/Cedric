@@ -3,9 +3,9 @@
 \usepackage{amssymb}
 \usepackage{url}
 \usepackage[T1]{fontenc}
-
-
-
+\author{Cédric Libert}
+\institute{}
+\usepackage[top=1in, bottom=1in, left=1.4in, right=1.4in]{geometry}
 \begin{document}
 
 \mainmatter  % start of an individual contribution
@@ -18,7 +18,7 @@
 
 
 \section{Research objectives}
-(* Should be rewritten *)
+%(* Should be rewritten *)
 The main objective of the current proposal is to investigate how constraint solving capability can be added to an object-oriented language while diminishing the need to write custom solvers or propagators. In particular we aim to investigate the following:
 \begin{enumerate}
 \item To what extent can the basic concepts underlying the object-oriented programming paradigm (classes, objects, methods) be used to express constraints over a class' possible instantiations.
@@ -32,11 +32,11 @@ The main objective of the current proposal is to investigate how constraint solv
 Over the years, constraint programming \cite{Rossi2006,Marriott98} has been developed as a programming paradigm particularly tailored towards solving constraint satisfaction problems. Arguably the most interesting advantage of the paradigm lies in the fact that it allows one to write down the key characteristics of a solution to the problem of interest, while the search for a solution itself is left in the hands of the system. This declarative way of problem solving is inherently different from a more classical algorithmic approach in which the programmer needs to write down the series of subsequent steps that are needed to compute the solution. 
 
 Formally, a constraint satisfaction problem (CSP) is represented by a triple $(Z,D,C)$ where $Z$ is a finite set of variables, $D$ is a function mapping the variables in $Z$ to a set of objects of arbitrary type (the \textit{domain} of the variables) and $C$ is a finite (possibly empty) set of constraints on an arbitrary subset of variables in $Z$. A solution to a to a CSP $(Z,D,C)$ is a simultaneous assignment of values (from the respective domains of each variable provided by $D$) to the whole set of variables $Z$ in such a way that the constraints in $C$ are satisfied \cite{54670}. 
-The main techniques for solving CSPs are based on search and backtracking \cite{} often combined with propagation or domain reduction techniques such as node-consistency \cite{} and (hyper) arc consistency \cite{}.
+The main techniques for solving CSPs are based on search and backtracking \cite{ZhangZ96:2} often combined with propagation or domain reduction techniques such as node-consistency  and (hyper) arc consistency \cite{Mackworth197799,conf/ijcai/DevilleH91}.
 
 Whereas constraints offer a simple, neat and thus attractive way to model and solve CSPs, they are usually mixed with other programming language constructs -- be it declarative, functional or imperative -- to create a real programming language in which constraint solving can be combined with traditional algorithmic problem solving and that provides support for interfacing with the outside world.
 
-Although programming languages exist in which constraints are fully embedded such as Kaleidoscope~\cite{Lopez94kaleidoscope:a}, Oz~\cite{Smolka95theoz}, Curry~\cite{Hanus94theintegration} and different dialects of Prolog~\cite{}, mainstream imperative and object-oriented languages usually allow for adding constraint-solving capabilities by interacting with software libraries. Examples of the latter include Choco \cite{choco-ref-RR-EMN} for Java, Gecode \cite{gecode} for C++, OscaR~\cite{oscar} for Scala and Numberjack \cite{numberjack} for Python.
+Although programming languages exist in which constraints are fully embedded such as Kaleidoscope~\cite{Lopez94kaleidoscope:a}, Oz~\cite{Smolka95theoz}, Curry~\cite{Hanus94theintegration} and different dialects of Prolog~\cite{Jaffar:1987:CLP:41625.41635}, mainstream imperative and object-oriented languages usually allow for adding constraint-solving capabilities by interacting with software libraries. Examples of the latter include Choco \cite{choco-ref-RR-EMN} for Java, Gecode~\cite{gecode} for C++, OscaR~\cite{oscar} for Scala and Numberjack~\cite{numberjack} for Python.
 
 While creating and solving constraints through a library offers certain advantages -- the most visible arguably being the freedom of choice among several existing libraries and/or solvers -- it also comes with a number of severe drawbacks. First of all, constructing and solving constraints through the library's API typically involves non-trivial syntactic manipulations in order to construct constraints using the host language's primitive data types, call the solver, and interpret the answers. Subsequently, constraint manipulation typically resides in an isolated portion of the code, which makes it hard to develop an application in which constraint solving is fully integrated.
 
@@ -64,7 +64,7 @@ The main focus of this project is thus not on developing new constraint-solving 
 
 Firstly, to what extent can techniques from test-case generation be extended and adapted in order to compute class instantiations that verify the set of given constraints. Although seemingly rather straightforward in theory, it remains to be seen whether limits need to be imposed on the language constructs that can be used in the constraints in order to make value generation feasible in practice. Moreover, while test-case generation is typically concerned with a single method at a time, for object instantiation multiple boolean methods need to return true at the same time. It is also to be expected that the techniques need to deal with argument values provided from the object's constructor.
 
-Secondly, to what extent can the above mentioned base technique profit from defining propagation rules \cite{} that are logically redundant but that allow to replace complex constraints by simpler ones as such possibly aiding the resolution process. Moreover, constrained classes possibly being placed in an inheritance hierarchy, it needs to be investigated how constraints and possibly propagators (or even complete solvers) can exploit this hierarchy.
+Secondly, to what extent can the above mentioned base technique profit from defining propagation rules that are logically redundant but that allow to replace complex constraints by simpler ones as such possibly aiding the resolution process. Moreover, constrained classes possibly being placed in an inheritance hierarchy, it needs to be investigated how constraints and possibly propagators (or even complete solvers) can exploit this hierarchy.
 
 Thirdly, in a typical setting multiple (different) instantiations need to be computed for a given constrained class and thus a search strategy needs to be incorporated. It is an open question how this search strategy (i.e. basically the solver) can be represented in such a way that it can easily be adapted and manipulated for a particular application. 
 
@@ -73,13 +73,13 @@ Fourthly, being part of a running system, the objects generated from a constrain
 
 \section{Plan}
 
-In a first stage, we plan to undertake a thorough study of the existing literature concerning the integration of constraints in object-oriented programming languages. We mention \cite{} and \cite{} as suitable starting points. In a parallel effort, we will investigate the state of the art concerning test-case generation, in particular the work on generating instances of complex data structures \cite{Zhao07}. We plan to build further on the in-house experience present at the University of Namur with respect to this topic~\cite{DBLP:conf/lopstr/DegraveSV09,DBLP:conf/sigmod/MarcozziVH12}.
+In a first stage, we plan to undertake a thorough study of the existing literature concerning the integration of constraints in object-oriented programming languages. We mention \cite{Wolf06} and \cite{Ivanovic} as suitable starting points. In a parallel effort, we will investigate the state of the art concerning test-case generation, in particular the work on generating instances of complex data structures \cite{Zhao07}. We plan to build further on the in-house experience present at the University of Namur with respect to this topic~\cite{DBLP:conf/lopstr/DegraveSV09,DBLP:conf/sigmod/MarcozziVH12}.
 
 In a second stage, we start working on the first research question cited in this proposal. While the idea is to pursue the different research questions in order, it is to be expected that the initial results regarding research question 1 will steer and prioritize the directions our research will take.
 
 As concrete outcomes of the proposed research, we expect to publish our results in peer-reviewed proceedings. In particular, we envisage a first (workshop) publication by the end of the first year, in which the general framework we intend to develop will be described. We expect that the further technical development of this framework and its instantiation will provide the occasion for several conference publications during the 4-year timespan of this project. We intend to apply our ideas in practice by re-engineering an existing mid-sized real-world application. This will allow us to evaluate the feasibility, effectiveness and efficiency of our approach, and will provide us with feedback that will in turn allow us to refine and augment the framework. In addition to being a testbed for our research, we envisage to report on our application in an implementation-driven workshop or conference.
 
-(* Perhaps say that we will re-engineer the application in parallel with our ideas *)
+%(* Perhaps say that we will re-engineer the application in parallel with our ideas *)
 
 
 \bibliographystyle{ieeetr}
